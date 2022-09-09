@@ -1,0 +1,54 @@
+---
+- name: Patch the StorageClass making it the default
+  shell: |
+    kubectl patch sc oci-bv -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+  become: true
+  become_user: "{{ install_user }}"
+- name: Copy CSI Driver config
+  copy:
+    src: files/csi-driver.yml
+    dest: /home/{{ install_user }}/csi-driver.yml
+  become: true
+  become_user: "{{ install_user }}"
+- name: Apply CSI Driver config
+  shell: |
+    kubectl apply -f /home/{{ install_user }}/csi-driver.yml
+  become: true
+  become_user: "{{ install_user }}"
+- name: Deploy Verrazzano platform operator
+  shell: |
+    kubectl apply -f https://github.com/verrazzano/verrazzano/releases/download/v1.3.3/operator.yaml
+  become: true
+  become_user: "{{ install_user }}"
+- name: Wait for deployment to complete
+  shell: |
+    kubectl -n verrazzano-install rollout status deployment/verrazzano-platform-operator
+  become: true
+  become_user: "{{ install_user }}"
+  register: v8oinstall
+  retries: 30
+  delay: 30
+  until: '"successfully rolled out" in v8oinstall.stdout'
+- name: Copy Verrazano config
+  template:
+    src: templates/example-verrazzano.j2
+    dest: /home/{{ install_user }}/example-verrazzano.yml
+  become: true
+  become_user: "{{ install_user }}"
+- name: Apply Verrazzano config
+  shell: |
+    kubectl apply -f /home/{{ install_user }}/example-verrazzano.yml
+  become: true
+  become_user: "{{ install_user }}"
+- name: Wait for Install to complete
+  shell: |
+    kubectl wait \
+    --timeout=20m \
+    --for=condition=InstallComplete verrazzano/example-verrazzano
+  become: true
+  become_user: "{{ install_user }}"
+  register: vzinstall
+- name: DEBUG output
+  debug:
+    var: vzinstall
+  when: debug_output == true

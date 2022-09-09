@@ -46,3 +46,11 @@ This automation is best executed within the Luna Lab environment using Visual St
     ```
     ./setup.sh 
     ```
+
+    # Usefull commands
+
+    1. To retrieve installed OCNE version execute 
+    ```
+    [oracle@ocne-node01 ~]$ rpm -q olcne-api-server
+    olcne-api-server-1.5.5-1.el8.x86_64
+    ```

@@ -1,10 +1,8 @@
 ---
 ocne_node01: 130.61.182.225
 
-# ocne_module_metallb: true: enables metallb within the ocne cluster
-ocne_module_metallb: true
-# ocne_module_istio: true: enables istio within the ocne cluster with grafana
-ocne_module_istio: true
+# vz_profile: Verrazzano profile to be installed {dev, prod, managed-cluster}
+vz_profile: dev
 
 # install_user: os user for installing the ocne components
 install_user: oracle
