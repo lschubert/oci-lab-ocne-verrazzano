@@ -41,12 +41,17 @@ This automation is best executed within the Luna Lab environment using Visual St
 
     Save the file.
 
-    3.5. Start setup
+    3.5. Start setup to configure ocne
 
     ```
     ./setup.sh 
     ```
 
+    3.6. Start setup to configure verrazzano
+
+    ```
+    ./setup.sh v8o
+    ```
     # Usefull commands
 
     1. To retrieve installed OCNE version execute 
