@@ -3,4 +3,5 @@
   hosts: ocne-nodes
   vars_files: main.yml
   roles:
-    - { role: install-verrazzano }
+    #- { role: install-verrazzano }
+    - { role: generate-bookmarks }
