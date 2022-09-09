@@ -1,0 +1,14 @@
+---
+ocne_node01: 130.61.182.225
+
+# ocne_module_metallb: true: enables metallb within the ocne cluster
+ocne_module_metallb: true
+# ocne_module_istio: true: enables istio within the ocne cluster with grafana
+ocne_module_istio: true
+
+# install_user: os user for installing the ocne components
+install_user: oracle
+# oci_executor: true: execute ansible playbook from oci lab environment; false: execute from anywhere according to README.md instructions
+oci_executor: true
+# debug_output: true enables some debug output during setup
+debug_output: true

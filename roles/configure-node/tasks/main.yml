@@ -1,0 +1,33 @@
+---
+# Steps to configure olcnectl for proper use
+- name: Configure olcnectl completion
+  lineinfile:
+    line: source <(olcnectl completion bash)
+    path: ${HOME}/.bashrc
+  become: true
+  become_user: "{{ install_user}}"
+- name: Prepare Certificates storage
+  file:
+    path: /home/{{ install_user }}/.olcne/certificates/
+    state: directory
+  become: true
+  become_user: "{{ install_user }}"  
+- name: Configure Certificates for CLI
+  file:
+    src: /etc/olcne/configs/certificates/restrict_external_ip/production/{{ item }}
+    dest: /home/{{ install_user }}/.olcne/certificates/{{ item }}
+    state: link
+  become: true
+  loop:
+    - node.cert
+    - node.key
+    - ca.cert
+- name: Configure olcnectl environment settings
+  blockinfile:
+    path: ${HOME}/.bashrc
+    block: |
+      export OLCNE_SM_CA_PATH=/etc/olcne/configs/certificates/production/ca.cert
+      export OLCNE_SM_CERT_PATH=/etc/olcne/configs/certificates/production/node.cert
+      export OLCNE_SM_KEY_PATH=/etc/olcne/configs/certificates/production/node.key
+  become: true
+  become_user: "{{ install_user}}"
