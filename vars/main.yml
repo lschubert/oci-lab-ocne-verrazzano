@@ -1,0 +1,12 @@
+---
+ocne_node01: 130.61.182.225
+
+# vz_profile: Verrazzano profile to be installed {dev, prod, managed-cluster}
+vz_profile: dev
+
+# install_user: os user for installing the ocne components
+install_user: oracle
+# oci_executor: true: execute ansible playbook from oci lab environment; false: execute from anywhere according to README.md instructions
+oci_executor: true
+# debug_output: true enables some debug output during setup
+debug_output: true
