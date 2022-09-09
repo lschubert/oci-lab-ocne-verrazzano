@@ -52,6 +52,17 @@ This automation is best executed within the Luna Lab environment using Visual St
     ```
     ./setup.sh v8o
     ```
+    
+    3.7. Import bookmarks to Google Chrome
+
+    In Google Chrome choose the "three vertical dot menu" > "Bookmarks" > Import Bookmarks and Settings... > Choose file 
+
+    Select under Desktop the file bookmarks.html and enable "Show bookmarks bar"
+
+    Bookmarks are now imported in the Browsers Bookmarks bar. To access Verrazzano Consoles choose bookmarks under Verrazzano folder, to open sample apps choose bookmarks under Apps folder.
+    
+    Credentials to access Console URLs are stored under Desktop in credentials.yml
+    
     # Usefull commands
 
     1. To retrieve installed OCNE version execute 
