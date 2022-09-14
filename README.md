@@ -19,7 +19,7 @@ This automation is best executed within the Luna Lab environment using Visual St
 
     2.1 Open Visual Studio Code. Select Topmost left Icon ("Explorer") and press "Clone Repository" button.
     
-    Provide github URL: https://github.com/lschubert/oci-lab-ocne-metallb.git
+    Provide github URL: https://github.com/lschubert/oci-lab-ocne-verrazzano.git
     
     Select "Open Folder" and choose the local path of cloned repo
 
